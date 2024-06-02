@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2.5rem 2.5rem;
+}
+.searchBar{
+    display: block;
+    height: 50px;
+    width: 50%;
+    align-items: center;
+    margin: auto;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+}
+.searchBar:focus {
+    outline: none !important;
+    border:1px solid red;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+.ingredient-block {
+    /* border: 2px solid white; */
+    border: 3px solid white;
+    border-radius: 25px 25px ;
+    box-shadow: rgba(50, 50, 50, 0.10);
+}
+.ingredient-block > p {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+.ingredient-img{
+    height: 300px;
+    max-width: fit-content;
+    width: max-content;
+    object-fit: fill;
+    border-radius: 25px 25px 0px 0px;
+
+}
+.ingredient-block:hover {
+    transition: transform 0.5s ease-out;
+    transform: scale(1.1);
+    font-size: 30px;
+    
+}
+.ingredient-img:hover{
+    /* transition: transform 0.5s ease-out;
+    transform: scale(1.1); */
+}
+.foodName {
+    padding: 15px;
+}

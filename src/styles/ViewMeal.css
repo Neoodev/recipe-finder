@@ -1,0 +1,119 @@
+
+.imageContainer {
+    margin: auto;
+    align-items: center;
+    flex-direction: row;
+    gap: 1.9rem 1.9rem;
+    justify-content: center;
+
+}
+.image-card{
+    display: block;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    width: 450px;
+    align-items: center;
+    border: 2px solid white;
+}
+.mealImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: auto;
+    background-color: rgba(30, 30, 30, 0.5);
+    background-blend-mode: overlay;
+}
+.overlay-image{
+    display: block;
+    margin: auto;
+    /* background-color: rgba(50, 50, 50, 0.8); */
+    /* background-blend-mode: overlay; */
+    background-size: contain;
+    width: 450px;
+    justify-content: center;
+    align-items: center;
+}
+.textContainer {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem 3rem;
+    text-align: center;
+}
+.instructions {
+    white-space: pre-line;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.ingredients{
+    display: flex;
+    flex: 1;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    border: 1px solid red;
+}
+.instruction-block{
+    display: block;
+    flex-direction: row;
+    background-color: lightseagreen;
+    width: 40%;
+    padding: 25px
+}
+.ingredient-card{
+    display: block;
+    text-align: center;
+    padding: 25px;
+    background-color: lightsalmon;
+    margin: 5px;
+    font-size: 1.9rem;
+    border-radius: 10px;
+}
+.measurement-block{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    background-color: lightcoral;
+    width: 30%;
+    padding: 25px;
+
+}
+.youtube-block{
+    text-align: start;
+    background-color: lightskyblue;
+    width: 30%;
+}
+.instruction-block > p{
+    font-size: 1.3rem;
+}
+.measurement-text{
+    display: flex;
+    align-items: center;
+    justify-content:  center;
+}
+.measurement-text > div{
+    font-size: 1.3rem;
+
+}
+.meal-name{
+    padding: 15px;
+    font-size: 2.5rem;
+    text-align: center;
+}
+.meal-category{
+    padding: 25px;
+    background-color: darkslateblue;
+    align-self: flex-start;
+}
+.meal-origin{
+    padding: 25px;
+    background-color: darkcyan;
+    align-self: flex-start;
+}
+.meal-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
