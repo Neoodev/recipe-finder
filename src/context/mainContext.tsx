@@ -50,8 +50,8 @@ const initialState: IMealContext = {
 const FoodContext = createContext<IMealContext>(initialState);
 
 const retrievedSearch = JSON.parse(
-  localStorage.getItem("queryIngredient") || ""
-) as string;
+  localStorage.getItem("queryIngredient" || "") as string
+);
 const retrievedMeal = JSON.parse(
   localStorage.getItem("mealName" || "") as string
 );
