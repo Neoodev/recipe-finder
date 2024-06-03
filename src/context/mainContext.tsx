@@ -50,10 +50,9 @@ const initialState: IMealContext = {
 const FoodContext = createContext<IMealContext>(initialState);
 
 const retrievedSearch = JSON.parse(
-  localStorage.getItem("queryIngredient") || ""
+  localStorage.getItem("viewMeal" || {}) as string
 );
 const retrievedMeal = JSON.parse(localStorage.getItem("mealName") || "");
-
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ingredients, setIngredients] = useState<Meal[]>([]);
   const [meal, setMeal] = useState(retrievedMeal);
