@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { FoodContext, ViewMeal } from "../context/mainContext";
+import { FoodContext } from "../context/mainContext";
 import { NavLink } from "../../node_modules/react-router-dom/dist/index";
 import "../styles/ViewMeal.css";
 import logo1 from "../assets/instructions.png";
@@ -10,9 +10,9 @@ import { Meal, MealProp } from "../types/global.types";
 const ViewMeal = () => {
   const { meal } = useContext(FoodContext);
 
-  const retrievedViewMeal = JSON.parse(
-    localStorage.getItem("viewMeal" || {}) as string
-  );
+  const retrievedViewMeal =
+    JSON.parse(localStorage.getItem("viewMeal") as string) || {};
+
   const [mealName, setMealName] = useState(retrievedViewMeal);
 
   let strIngredients: string[];
@@ -104,7 +104,7 @@ const ViewMeal = () => {
   return (
     <div>
       <button type="button">
-        <NavLink to="/">Back</NavLink>
+        <NavLink to="/recipe-finder/">Back</NavLink>
       </button>
       {meals?.map((meal: MealProp) => (
         <div key={meal.idMeal}>

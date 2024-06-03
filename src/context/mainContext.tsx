@@ -7,7 +7,7 @@ export type Meal = {
   strMealThumb: string;
   idMeal: number;
 };
-export type ViewMeal = {
+export type TViewMeal = {
   strMeal: string;
   strDrinkAlternate: string;
   strCategory: string;
@@ -23,7 +23,7 @@ export interface IMealContext {
   render: boolean;
   error: string;
   setError: (text: string) => void;
-  meal: ViewMeal;
+  meal: TViewMeal;
   setMeal: (text: object) => void;
   loading: boolean;
 }
@@ -50,17 +50,34 @@ const initialState: IMealContext = {
 const FoodContext = createContext<IMealContext>(initialState);
 
 const retrievedSearch = JSON.parse(
-  localStorage.getItem("viewMeal" || {}) as string
+  localStorage.getItem("queryIngredient") || ""
+) as string;
+const retrievedMeal = JSON.parse(
+  localStorage.getItem("mealName" || "") as string
 );
-const retrievedMeal = JSON.parse(localStorage.getItem("mealName") || "");
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
+  console.log("hey", retrievedSearch);
   const [ingredients, setIngredients] = useState<Meal[]>([]);
   const [meal, setMeal] = useState(retrievedMeal);
   const [searchText, setSearchText] = useState<string>(retrievedSearch);
   const [render, shouldRender] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
-
+  const mealsRecipe = async (): Promise<void> => {
+    setLoading(true);
+    await fetch(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchText}`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setIngredients(json.meals);
+        shouldRender(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setLoading(false));
+  };
   useEffect(() => {
     const delay = setTimeout(() => {
       if (searchText) {
@@ -78,21 +95,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     localStorage.setItem("mealName", JSON.stringify(meal));
   }, [meal]);
-  const mealsRecipe = async (): Promise<void> => {
-    setLoading(true);
-    await fetch(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchText}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setIngredients(json.meals);
-        shouldRender(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => setLoading(false));
-  };
+
   return (
     <>
       <FoodContext.Provider
