@@ -10,8 +10,9 @@ import { Meal, MealProp } from "../types/global.types";
 const ViewMeal = () => {
   const { meal } = useContext(FoodContext);
 
-  const retrievedViewMeal =
-    JSON.parse(localStorage.getItem("viewMeal") as string) || {};
+  const retrievedViewMeal = JSON.parse(
+    localStorage.getItem("viewMeal" || {}) as string
+  );
   const [mealName, setMealName] = useState(retrievedViewMeal);
 
   let strIngredients: string[];
