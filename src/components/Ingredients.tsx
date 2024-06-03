@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import "../styles/Ingredients.css";
 import { FoodContext } from "../context/mainContext";
 import { useContext } from "react";
-import { NavLink } from "../../node_modules/react-router-dom/dist/index";
 import { Meal } from "../context/mainContext";
 
 const Ingredients = () => {
@@ -11,13 +10,12 @@ const Ingredients = () => {
     setSearchText,
     render,
     searchText,
-    meal,
     setMeal,
     error,
     loading,
   } = useContext(FoodContext);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 

@@ -5,17 +5,8 @@ import { FoodContext, ViewMeal } from "../context/mainContext";
 import { NavLink } from "../../node_modules/react-router-dom/dist/index";
 import "../styles/ViewMeal.css";
 import logo1 from "../assets/instructions.png";
+import { Meal, MealProp } from "../types/global.types";
 
-type MealProp = {
-  idMeal: number;
-  strMealThumb: string;
-  strMeal: string;
-  strInstructions: string;
-  strYoutube: string;
-  strArea: string;
-  strCategory: string;
-  strSource: string;
-};
 const ViewMeal = () => {
   const { meal } = useContext(FoodContext);
 
@@ -41,7 +32,7 @@ const ViewMeal = () => {
   }, [mealName]);
   const { meals } = mealName;
 
-  meals?.forEach((e) => {
+  meals?.forEach((e: Meal) => {
     strMeasurements = [
       `${e.strMeasure1} ${e.strIngredient1}`,
       `${e.strMeasure2} ${e.strIngredient2}`,
@@ -65,7 +56,7 @@ const ViewMeal = () => {
       `${e.strMeasure20} ${e.strIngredient20}`,
     ];
   });
-  meals?.forEach((e) => {
+  meals?.forEach((e: Meal) => {
     strIngredients = [
       e.strIngredient1,
       e.strIngredient2,
