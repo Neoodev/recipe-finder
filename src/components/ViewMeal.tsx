@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { FoodContext } from "../context/mainContext";
+import { FoodContext, ViewMeal } from "../context/mainContext";
 import { NavLink } from "../../node_modules/react-router-dom/dist/index";
 import "../styles/ViewMeal.css";
 import logo1 from "../assets/instructions.png";
@@ -19,13 +19,13 @@ type MealProp = {
 const ViewMeal = () => {
   const { meal } = useContext(FoodContext);
 
-  const retrievedViewMeal = JSON.parse(localStorage.getItem("viewMeal") as string) || {};
+  const retrievedViewMeal =
+    JSON.parse(localStorage.getItem("viewMeal") as string) || {};
   const [mealName, setMealName] = useState(retrievedViewMeal);
 
   let strIngredients: string[];
   let strMeasurements: string[];
   useEffect(() => {
-
     const getMeal = async (): Promise<void> => {
       await fetch(
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal.strMeal}`
@@ -111,35 +111,26 @@ const ViewMeal = () => {
   console.log(meals);
   return (
     <div>
-    <button type="button">
-      <NavLink to="/">Back</NavLink>
-
-    </button>
+      <button type="button">
+        <NavLink to="/">Back</NavLink>
+      </button>
       {meals?.map((meal: MealProp) => (
         <div key={meal.idMeal}>
           <div className="imageContainer">
-            <div className="image-card" style={{position: 'relative'}}>
-                <div className="overlay-image" style={{backgroundImage: `url(${meal.strMealThumb})`}}>
-                  <div
-                    className="mealImage"
-                    style={{height: 450, width: 450}}
-                    >
-                      <h1 className="meal-name" >
-                        {meal.strMeal}
-                      </h1>
+            <div className="image-card" style={{ position: "relative" }}>
+              <div
+                className="overlay-image"
+                style={{ backgroundImage: `url(${meal.strMealThumb})` }}
+              >
+                <div className="mealImage" style={{ height: 450, width: 450 }}>
+                  <h1 className="meal-name">{meal.strMeal}</h1>
 
-                      <div className="meal-details">
-                          <h1 className="meal-category" >
-                            {meal.strCategory}
-                          </h1>
-                          <h1 className="meal-origin">
-                            {meal.strArea}
-                          </h1>
-
-                      </div>
-
-                    </div>
+                  <div className="meal-details">
+                    <h1 className="meal-category">{meal.strCategory}</h1>
+                    <h1 className="meal-origin">{meal.strArea}</h1>
+                  </div>
                 </div>
+              </div>
               {meal.strSource === "" || meal.strSource === null ? (
                 ""
               ) : (
@@ -154,7 +145,7 @@ const ViewMeal = () => {
                   </NavLink>
                 </>
               )}
-              </div>
+            </div>
 
             <br />
             <hr />

@@ -7,7 +7,7 @@ export type Meal = {
   strMealThumb: string;
   idMeal: number;
 };
-type ViewMeal = {
+export type ViewMeal = {
   strMeal: string;
   strDrinkAlternate: string;
   strCategory: string;
@@ -25,9 +25,10 @@ export interface IMealContext {
   setError: (text: string) => void;
   meal: ViewMeal;
   setMeal: (text: object) => void;
+  loading: boolean;
 }
 
-const initialState = {
+const initialState: IMealContext = {
   ingredients: [],
   setIngredients: () => {},
   searchText: "",
@@ -35,17 +36,25 @@ const initialState = {
   render: false,
   error: "",
   setError: () => {},
-  meal: {},
+  meal: {
+    strMeal: "",
+    strCategory: "",
+    strArea: "",
+    strDrinkAlternate: "",
+    strInstructions: "",
+  },
   setMeal: () => {},
+  loading: false,
 };
 
 const FoodContext = createContext<IMealContext>(initialState);
 
-const retrievedSearch =
-  JSON.parse(localStorage.getItem("queryIngredient")) || "";
-const retrievedMeal = JSON.parse(localStorage.getItem("mealName")) || {};
+const retrievedSearch = JSON.parse(
+  localStorage.getItem("queryIngredient") || ""
+);
+const retrievedMeal = JSON.parse(localStorage.getItem("mealName") || "");
 
-const MainContextProvider = ({ children }: React.ReactNode) => {
+const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ingredients, setIngredients] = useState<Meal[]>([]);
   const [meal, setMeal] = useState(retrievedMeal);
   const [searchText, setSearchText] = useState<string>(retrievedSearch);
