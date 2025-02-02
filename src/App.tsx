@@ -5,12 +5,12 @@ import ViewMeal from "./components/ViewMeal";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/recipe-finder/" element={<Ingredients />}></Route>
-        <Route path="/recipe-finder/viewmeal" element={<ViewMeal />}></Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/recipe-finder">
+        <Route index element={<Ingredients />}></Route>
+        <Route path="viewmeal" element={<ViewMeal />}></Route>
+      </Route>
+    </Routes>
   );
 }
 

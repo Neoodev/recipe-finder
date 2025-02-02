@@ -3,6 +3,7 @@ import "../styles/Ingredients.css";
 import { FoodContext } from "../context/mainContext";
 import { useContext } from "react";
 import { Meal } from "../context/mainContext";
+import { NavLink } from "react-router-dom";
 
 const Ingredients = () => {
   const {
@@ -55,7 +56,10 @@ const Ingredients = () => {
             ) : render && !loading ? (
               ingredients?.map((ingredients) => (
                 <div key={ingredients.idMeal} className="ingredient-block">
-                  <a href={`viewmeal`} onClick={() => handleClick(ingredients)}>
+                  <NavLink
+                    to="viewmeal"
+                    onClick={() => handleClick(ingredients)}
+                  >
                     <div>
                       <img
                         loading="lazy"
@@ -64,7 +68,7 @@ const Ingredients = () => {
                         className="ingredient-img"
                       />
                     </div>
-                  </a>
+                  </NavLink>
                   <div className="foodName">
                     <h3
                       style={{

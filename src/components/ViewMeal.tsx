@@ -104,7 +104,9 @@ const ViewMeal = () => {
   return (
     <div>
       <button type="button">
-        <NavLink to="/recipe-finder/">Back</NavLink>
+        <NavLink to=".." relative="path">
+          Back
+        </NavLink>
       </button>
       {meals?.map((meal: MealProp) => (
         <div key={meal.idMeal}>

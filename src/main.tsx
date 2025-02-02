@@ -6,11 +6,11 @@ import { BrowserRouter } from "../node_modules/react-router-dom/dist/index";
 import { MainContextProvider } from "./context/mainContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <MainContextProvider>
+  <React.StrictMode>
+    <MainContextProvider>
+      <BrowserRouter>
         <App />
-      </MainContextProvider>
-    </React.StrictMode>
-  </BrowserRouter>
+      </BrowserRouter>
+    </MainContextProvider>
+  </React.StrictMode>
 );
